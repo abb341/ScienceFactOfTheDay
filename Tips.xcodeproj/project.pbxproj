@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */; };
+		184C6F061B51CD2B0072B76E /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F051B51CD2B0072B76E /* Fact.swift */; };
 		185F30301B50CCB5008AB77B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F302F1B50CCB5008AB77B /* AppDelegate.swift */; };
-		185F30321B50CCB5008AB77B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F30311B50CCB5008AB77B /* ViewController.swift */; };
 		185F30351B50CCB5008AB77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185F30331B50CCB5008AB77B /* Main.storyboard */; };
 		185F30371B50CCB5008AB77B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185F30361B50CCB5008AB77B /* Images.xcassets */; };
 		185F303A1B50CCB5008AB77B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F30381B50CCB5008AB77B /* LaunchScreen.xib */; };
 		185F30461B50CCB5008AB77B /* TipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F30451B50CCB5008AB77B /* TipsTests.swift */; };
+		804CC3BC03D7CFC689684F80 /* Pods_Tips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3868250FCE7AFE730AA7BD /* Pods_Tips.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +28,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactOfTheDayViewController.swift; sourceTree = "<group>"; };
+		184C6F051B51CD2B0072B76E /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		185F302A1B50CCB5008AB77B /* Tips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185F302E1B50CCB5008AB77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185F302F1B50CCB5008AB77B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		185F30311B50CCB5008AB77B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		185F30341B50CCB5008AB77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		185F30361B50CCB5008AB77B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		185F30391B50CCB5008AB77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		185F303F1B50CCB5008AB77B /* TipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185F30441B50CCB5008AB77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185F30451B50CCB5008AB77B /* TipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsTests.swift; sourceTree = "<group>"; };
+		7DF1B32C7FE593191CAF8978 /* Pods-Tips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tips/Pods-Tips.debug.xcconfig"; sourceTree = "<group>"; };
+		85A4C09C341DE82BCCDAEF1A /* Pods-Tips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tips.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tips/Pods-Tips.release.xcconfig"; sourceTree = "<group>"; };
+		AE3868250FCE7AFE730AA7BD /* Pods_Tips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804CC3BC03D7CFC689684F80 /* Pods_Tips.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +63,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184C6EF01B50D4440072B76E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		184C6F041B51CD1B0072B76E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				184C6F051B51CD2B0072B76E /* Fact.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		185F30211B50CCB5008AB77B = {
 			isa = PBXGroup;
 			children = (
 				185F302C1B50CCB5008AB77B /* Tips */,
 				185F30421B50CCB5008AB77B /* TipsTests */,
 				185F302B1B50CCB5008AB77B /* Products */,
+				F5B1D69E8DC75751435DAD2B /* Pods */,
+				FE62FDAF0A2B9F571E5F22E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +102,9 @@
 		185F302C1B50CCB5008AB77B /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				184C6F041B51CD1B0072B76E /* Models */,
+				184C6EF01B50D4440072B76E /* View Controllers */,
 				185F302F1B50CCB5008AB77B /* AppDelegate.swift */,
-				185F30311B50CCB5008AB77B /* ViewController.swift */,
 				185F30331B50CCB5008AB77B /* Main.storyboard */,
 				185F30361B50CCB5008AB77B /* Images.xcassets */,
 				185F30381B50CCB5008AB77B /* LaunchScreen.xib */,
@@ -112,6 +138,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F5B1D69E8DC75751435DAD2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7DF1B32C7FE593191CAF8978 /* Pods-Tips.debug.xcconfig */,
+				85A4C09C341DE82BCCDAEF1A /* Pods-Tips.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE62FDAF0A2B9F571E5F22E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE3868250FCE7AFE730AA7BD /* Pods_Tips.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "Tips" */;
 			buildPhases = (
+				32BAB5F8A0ABD8F04C7F6E86 /* Check Pods Manifest.lock */,
 				185F30261B50CCB5008AB77B /* Sources */,
 				185F30271B50CCB5008AB77B /* Frameworks */,
 				185F30281B50CCB5008AB77B /* Resources */,
+				A9786A80880AC9904239EED8 /* Embed Pods Frameworks */,
+				BB39103068AB0AAF5C604A57 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,12 +253,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32BAB5F8A0ABD8F04C7F6E86 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A9786A80880AC9904239EED8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tips/Pods-Tips-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB39103068AB0AAF5C604A57 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tips/Pods-Tips-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		185F30261B50CCB5008AB77B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185F30321B50CCB5008AB77B /* ViewController.swift in Sources */,
+				184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */,
+				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
 				185F30301B50CCB5008AB77B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +435,7 @@
 		};
 		185F304A1B50CCB5008AB77B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DF1B32C7FE593191CAF8978 /* Pods-Tips.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tips/Info.plist;
@@ -350,6 +446,7 @@
 		};
 		185F304B1B50CCB5008AB77B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85A4C09C341DE82BCCDAEF1A /* Pods-Tips.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tips/Info.plist;
@@ -411,6 +508,7 @@
 				185F304B1B50CCB5008AB77B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		185F304C1B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "TipsTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +517,7 @@
 				185F304E1B50CCB5008AB77B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
