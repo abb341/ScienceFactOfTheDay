@@ -11,6 +11,9 @@ import Parse
 
 class FactOfTheDayViewController: UIViewController {
     @IBOutlet weak var factOfTheDay: UILabel!
+    @IBAction func presentNavigation(sender: AnyObject?){
+        performSegueWithIdentifier("presentMenu", sender: self)
+    }
     
     var fact: [Fact] = []
     
@@ -85,14 +88,11 @@ class FactOfTheDayViewController: UIViewController {
     }
     
     
-    /*
+    
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        
     }
-    */
     
 }
