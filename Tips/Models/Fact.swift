@@ -12,6 +12,7 @@ import Parse
 class Fact : PFObject, PFSubclassing {
     @NSManaged var contentOfFact: String
     @NSManaged var forDate: Int
+    @NSManaged var detailOfFact: String
     
     var factLabel: UILabel!
     

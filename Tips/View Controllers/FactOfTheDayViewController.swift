@@ -20,6 +20,9 @@ class FactOfTheDayViewController: UIViewController {
     }
     
     var fact: [Fact] = []
+    var detailOfFact: String = "Sorry, There is no more information for this fact :("
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,14 @@ class FactOfTheDayViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        /*
+        //Reset Realm Data
+        var realm = Realm()
+        realm.write() {
+            realm.deleteAll()
+        } */
+        
         
         //Date
         let calendar = NSCalendar.currentCalendar()
@@ -55,11 +66,14 @@ class FactOfTheDayViewController: UIViewController {
         
     }
     
+    // MARK: Fact Of The Day Realm
+    
     func displayFactFromRealm(dateTodayAsInt: Int) -> Void {
         let realm = Realm()
         var realmQuery = realm.objects(RecentFact).filter("forDate == %d", dateTodayAsInt)
         var recentFact = realmQuery.first
         self.factOfTheDay.text = recentFact?.contentOfFact
+        self.detailOfFact = recentFact!.detailOfFact
     }
     
     func checkRealmForFOTD(dateTodayAsInt: Int) -> Bool {
@@ -76,6 +90,7 @@ class FactOfTheDayViewController: UIViewController {
         return isFOTDOnRealm
     }
     
+    // MARK: Fact Of The Day Parse
     func displayFactOfTheDay(dateTodayAsInt: Int) -> Void {
         
         //Query Parse
@@ -86,9 +101,10 @@ class FactOfTheDayViewController: UIViewController {
             //Loop through fact array
             //var contentForToday = String()
             for fact in self.fact {
-                //Retrieve forDate of each PFObject
+                //Retrieve info of each PFObject
                 var forDate = fact.forDate
                 var contentOfFact = fact.contentOfFact
+                var detailOfFact = fact.detailOfFact
                 
                 //Compare forDate to dateTodayAsInt
                 if (dateTodayAsInt != forDate) {
@@ -98,11 +114,13 @@ class FactOfTheDayViewController: UIViewController {
                 }
                 else {
                     self.factOfTheDay.text = contentOfFact
+                    self.detailOfFact = detailOfFact
                     
                     //Store Fact on Realm
                     var recentFact = RecentFact()
                     recentFact.contentOfFact = contentOfFact
                     recentFact.forDate = forDate
+                    recentFact.detailOfFact = detailOfFact
                     let realm = Realm()
                     realm.write() {
                         realm.add(recentFact)
@@ -121,6 +139,10 @@ class FactOfTheDayViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "learnMore" {
+            var destViewController = segue.destinationViewController as! LearnMoreViewController
+            destViewController.factDetailsText = detailOfFact
+        }
     }
     
 }

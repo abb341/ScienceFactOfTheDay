@@ -12,4 +12,5 @@ import RealmSwift
 class RecentFact: Object {
     dynamic var contentOfFact: String = ""
     dynamic var forDate: Int = 0
+    dynamic var detailOfFact: String = ""
 }
