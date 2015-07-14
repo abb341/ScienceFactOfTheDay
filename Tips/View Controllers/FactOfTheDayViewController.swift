@@ -41,8 +41,23 @@ class FactOfTheDayViewController: UIViewController {
         let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
         let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
         var dateTodayAsInt = month*1000000 + day*10000 + year
+        println(checkRealmForFOTD(dateTodayAsInt))
         displayFactOfTheDay(dateTodayAsInt)
         
+    }
+    
+    func checkRealmForFOTD(dateTodayAsInt: Int) -> Bool {
+        var isFOTDOnRealm: Bool
+        let realm = Realm()
+        var realmQuery = realm.objects(RecentFact).filter("forDate == %d", dateTodayAsInt)
+        if realmQuery.count == 0 {
+            isFOTDOnRealm = false
+        }
+        else {
+            isFOTDOnRealm = true
+        }
+        
+        return isFOTDOnRealm
     }
     
     func displayFactOfTheDay(dateTodayAsInt: Int) -> Void {
