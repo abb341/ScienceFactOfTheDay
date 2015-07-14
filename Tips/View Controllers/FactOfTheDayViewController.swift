@@ -68,10 +68,10 @@ class FactOfTheDayViewController: UIViewController {
                 else {
                     self.factOfTheDay.text = contentOfFact
                     //Save to Realm
-                    let realm = Realm()
-                    //realm.write {
-                      //  realm.add(fact)
-                    //}
+                    /*let realm = Realm()
+                    realm.write() {
+                        realm.add(fact)
+                    }*/
                 }
             }
             

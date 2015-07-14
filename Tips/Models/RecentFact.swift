@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Parse
 import RealmSwift
 
 class RecentFact: Object {
-    dynamic var contentOfNote: String = ""
+    dynamic var contentOfFact: String = ""
     dynamic var forDate: Int = 0
 }

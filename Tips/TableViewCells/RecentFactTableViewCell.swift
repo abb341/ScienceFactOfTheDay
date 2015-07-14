@@ -16,7 +16,7 @@ class RecentFactTableViewCell: UITableViewCell {
     var recentFact: RecentFact? {
         didSet {
             if let recentFact = recentFact, contentOfFact = contentOfFact, forDate = forDate {
-                self.contentOfFact.text = recentFact.contentOfNote
+                self.contentOfFact.text = recentFact.contentOfFact
                 forDate.text = "\(recentFact.forDate)"
             }
         }
