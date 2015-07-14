@@ -60,6 +60,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Tips/Parse.framework'
   install_framework 'Pods-Tips/ParseFacebookUtilsV4.framework'
   install_framework 'Pods-Tips/ParseUI.framework'
+  install_framework 'Pods-Tips/Realm.framework'
+  install_framework 'Pods-Tips/RealmSwift.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Tips/Bolts.framework'
@@ -70,4 +72,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Tips/Parse.framework'
   install_framework 'Pods-Tips/ParseFacebookUtilsV4.framework'
   install_framework 'Pods-Tips/ParseUI.framework'
+  install_framework 'Pods-Tips/Realm.framework'
+  install_framework 'Pods-Tips/RealmSwift.framework'
 fi

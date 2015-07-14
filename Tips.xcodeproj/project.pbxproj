@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */; };
 		184C6F061B51CD2B0072B76E /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F051B51CD2B0072B76E /* Fact.swift */; };
+		184C6F1D1B547D3F0072B76E /* RecentFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F1C1B547D3F0072B76E /* RecentFact.swift */; };
+		184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */; };
+		184C6F241B547EF50072B76E /* RecentFactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F231B547EF50072B76E /* RecentFactTableViewCell.swift */; };
 		185F30301B50CCB5008AB77B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F302F1B50CCB5008AB77B /* AppDelegate.swift */; };
 		185F30351B50CCB5008AB77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185F30331B50CCB5008AB77B /* Main.storyboard */; };
 		185F30371B50CCB5008AB77B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185F30361B50CCB5008AB77B /* Images.xcassets */; };
@@ -30,6 +33,9 @@
 /* Begin PBXFileReference section */
 		184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactOfTheDayViewController.swift; sourceTree = "<group>"; };
 		184C6F051B51CD2B0072B76E /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
+		184C6F1C1B547D3F0072B76E /* RecentFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFact.swift; sourceTree = "<group>"; };
+		184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFactsTableViewController.swift; sourceTree = "<group>"; };
+		184C6F231B547EF50072B76E /* RecentFactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFactTableViewCell.swift; sourceTree = "<group>"; };
 		185F302A1B50CCB5008AB77B /* Tips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185F302E1B50CCB5008AB77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185F302F1B50CCB5008AB77B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */,
+				184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -75,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				184C6F051B51CD2B0072B76E /* Fact.swift */,
+				184C6F1C1B547D3F0072B76E /* RecentFact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -84,6 +92,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		184C6F221B547ED40072B76E /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				184C6F231B547EF50072B76E /* RecentFactTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		185F30211B50CCB5008AB77B = {
@@ -109,6 +125,7 @@
 		185F302C1B50CCB5008AB77B /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				184C6F221B547ED40072B76E /* TableViewCells */,
 				184C6F191B544EDF0072B76E /* Helpers */,
 				184C6F041B51CD1B0072B76E /* Models */,
 				184C6EF01B50D4440072B76E /* View Controllers */,
@@ -316,6 +333,9 @@
 			files = (
 				184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */,
 				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
+				184C6F1D1B547D3F0072B76E /* RecentFact.swift in Sources */,
+				184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */,
+				184C6F241B547EF50072B76E /* RecentFactTableViewCell.swift in Sources */,
 				185F30301B50CCB5008AB77B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

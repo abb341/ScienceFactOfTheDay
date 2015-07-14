@@ -8,11 +8,15 @@
 
 import UIKit
 import Parse
+import RealmSwift
 
 class FactOfTheDayViewController: UIViewController {
     @IBOutlet weak var factOfTheDay: UILabel!
     @IBAction func presentNavigation(sender: AnyObject?){
         performSegueWithIdentifier("presentMenu", sender: self)
+    }
+    @IBAction func learnMoreButtonPressed(sender: AnyObject){
+        performSegueWithIdentifier("learnMore", sender: self)
     }
     
     var fact: [Fact] = []
@@ -37,7 +41,6 @@ class FactOfTheDayViewController: UIViewController {
         let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
         let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
         var dateTodayAsInt = month*1000000 + day*10000 + year
-        //println(dateTodayAsInt)
         displayFactOfTheDay(dateTodayAsInt)
         
     }
@@ -45,7 +48,6 @@ class FactOfTheDayViewController: UIViewController {
     func displayFactOfTheDay(dateTodayAsInt: Int) -> Void {
         
         //Query Parse
-        //let query = Fact.query()
         let query = PFQuery(className: "Fact")
         query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
             self.fact = result as? [Fact] ?? []
@@ -64,24 +66,16 @@ class FactOfTheDayViewController: UIViewController {
                     //fact.removeAtIndex(index: indexOf(fact, self.fact))
                 }
                 else {
-                    //var index = find(self.fact, fact)
-                    println(contentOfFact)
                     self.factOfTheDay.text = contentOfFact
-                    //contentForToday = self.fact[index!].contentOfFact
-                    //contentForToday = fact.contentOfFact
+                    //Save to Realm
+                    let realm = Realm()
+                    //realm.write {
+                      //  realm.add(fact)
+                    //}
                 }
             }
-            //println(self.fact.count)
-            //println(self.fact[0].contentOfFact)
-            /*for (var i=0; i<self.fact.count; i++) {
-            
-            }*/
             
             
-            //Set factOfTheDay Label to be equal to the contentOfFact
-            //self.fact[0].factLabel!.text = contentForToday
-            //self.factOfTheDay.text = contentForToday
-            //println(contentForToday)
             
         }
         
@@ -92,7 +86,6 @@ class FactOfTheDayViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
     }
     
 }

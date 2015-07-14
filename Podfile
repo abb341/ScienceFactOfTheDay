@@ -9,6 +9,7 @@ pod 'FBSDKCoreKit'
 pod 'ParseFacebookUtilsV4'
 pod 'ConvenienceKit'
 pod 'Bond'
+pod 'RealmSwift'
 
 end
 
