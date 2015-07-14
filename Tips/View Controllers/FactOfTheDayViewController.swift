@@ -67,11 +67,16 @@ class FactOfTheDayViewController: UIViewController {
                 }
                 else {
                     self.factOfTheDay.text = contentOfFact
-                    //Save to Realm
-                    /*let realm = Realm()
+                    
+                    //Store Fact on Realm
+                    var recentFact = RecentFact()
+                    recentFact.contentOfFact = contentOfFact
+                    recentFact.forDate = forDate
+                    let realm = Realm()
                     realm.write() {
-                        realm.add(fact)
-                    }*/
+                        realm.deleteAll()
+                        realm.add(recentFact)
+                    }
                 }
             }
             

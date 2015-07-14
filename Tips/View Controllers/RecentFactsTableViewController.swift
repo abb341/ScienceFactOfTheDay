@@ -24,14 +24,7 @@ class RecentFactsTableViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let myFact = RecentFact()
-        myFact.forDate = 7102015
-        myFact.contentOfFact = "This is an old fact"
         let realm = Realm() // 1
-            realm.write() { // 2
-                realm.deleteAll()
-                realm.add(myFact) // 3
-            }
         recentFacts = realm.objects(RecentFact)
     }
 
