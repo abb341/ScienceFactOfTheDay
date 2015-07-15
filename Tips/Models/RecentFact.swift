@@ -13,4 +13,6 @@ class RecentFact: Object {
     dynamic var contentOfFact: String = ""
     dynamic var forDate: Int = 0
     dynamic var detailOfFact: String = ""
+    dynamic var sourceName: String = ""
+    dynamic var sourceUrl: String = ""
 }

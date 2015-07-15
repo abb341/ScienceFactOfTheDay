@@ -13,8 +13,10 @@ class Fact : PFObject, PFSubclassing {
     @NSManaged var contentOfFact: String
     @NSManaged var forDate: Int
     @NSManaged var detailOfFact: String
+    @NSManaged var sourceName: String
+    @NSManaged var sourceUrl: String
     
-    var factLabel: UILabel!
+    //var factLabel: UILabel!
     
     
     //MARK: PFSubclassing Protocol

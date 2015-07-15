@@ -9,9 +9,20 @@
 import UIKit
 
 class LearnMoreViewController: UIViewController {
+    //Outlets
     @IBOutlet weak var factDetails: UILabel!
+    @IBOutlet weak var sourceName: UIButton!
     
+    //Actions
+    @IBAction func sourceNameButtonPressed(sender: AnyObject) {
+        //Load web page on safari
+        UIApplication.sharedApplication().openURL(NSURL(string: sourceUrl)!)
+    }
+    
+    //Variables
     var factDetailsText = String()
+    var sourceUrl = String()
+    var source = String()
     
 
     override func viewDidLoad() {
@@ -19,6 +30,7 @@ class LearnMoreViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         factDetails.text = factDetailsText
+        sourceName.setTitle(source, forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {

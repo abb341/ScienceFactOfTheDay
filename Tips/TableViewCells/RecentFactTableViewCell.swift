@@ -12,17 +12,6 @@ class RecentFactTableViewCell: UITableViewCell {
 
     @IBOutlet weak var forDate: UILabel!
     @IBOutlet weak var contentOfFact: UILabel!
-    /*
-    var recentFact: RecentFact? {
-        didSet {
-            if let recentFact = recentFact, contentOfFact = contentOfFact, forDate = forDate {
-                //self.contentOfFact.text = recentFact.contentOfFact
-                //forDate.text = "\(recentFact.forDate)"
-            }
-        }
-    }*/
-    
-    var recentFact: Fact?     
         
     override func awakeFromNib() {
         super.awakeFromNib()

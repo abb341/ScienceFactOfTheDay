@@ -12,12 +12,7 @@ import RealmSwift
 
 class RecentFactsTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    /*var recentFacts: Results<RecentFact>! {
-        didSet {
-            // Whenever notes update, update the table view
-            tableView?.reloadData()
-        }
-    }*/
+    
     
     var fact: [Fact] = []
     var detailOfFact: String = "Uh Oh...Could not find more information for this fact :("
@@ -30,9 +25,6 @@ class RecentFactsTableViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        /*
-        let realm = Realm() // 1
-        recentFacts = realm.objects(RecentFact)*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +40,9 @@ class RecentFactsTableViewController: UIViewController {
     }
     
     func displayRecentFacts(dateTodayAsInt: Int) {
+        //Reset Recent Facts Array
+        recentFacts = []
+        
         //Determine Past 7 days
         var recentDatesAsInts: [Int] = dateHelper.recentDays()
         
@@ -58,6 +53,7 @@ class RecentFactsTableViewController: UIViewController {
         
         //Query Parse
         let query = PFQuery(className: "Fact")
+        query.orderByDescending("forDate")
         query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
             self.fact = result as? [Fact] ?? []
             

@@ -21,6 +21,8 @@ class FactOfTheDayViewController: UIViewController {
     
     var fact: [Fact] = []
     var detailOfFact: String = "Sorry, There is no more information for this fact :("
+    var factSourceName: String = "No Source"
+    var factSourceUrl: String = "https://www.google.com"
     let dateHelper = DateHelper()
     
     // MARK: Lifecycle
@@ -44,8 +46,8 @@ class FactOfTheDayViewController: UIViewController {
         var realm = Realm()
         realm.write() {
             realm.deleteAll()
-        } */
-        
+        } 
+        */
         
         //Date
         var dateTodayAsInt = dateHelper.dateTodayAsInt()
@@ -71,6 +73,8 @@ class FactOfTheDayViewController: UIViewController {
         var recentFact = realmQuery.first
         self.factOfTheDay.text = recentFact?.contentOfFact
         self.detailOfFact = recentFact!.detailOfFact
+        self.factSourceName = recentFact!.sourceName
+        self.factSourceUrl = recentFact!.sourceUrl
     }
     
     func checkRealmForFOTD(dateTodayAsInt: Int) -> Bool {
@@ -101,6 +105,8 @@ class FactOfTheDayViewController: UIViewController {
                 var forDate = fact.forDate
                 var contentOfFact = fact.contentOfFact
                 var detailOfFact = fact.detailOfFact
+                var sourceName = fact.sourceName
+                var sourceUrl = fact.sourceUrl
                 
                 //Compare forDate to dateTodayAsInt
                 if (dateTodayAsInt != forDate) {
@@ -111,12 +117,17 @@ class FactOfTheDayViewController: UIViewController {
                 else {
                     self.factOfTheDay.text = contentOfFact
                     self.detailOfFact = detailOfFact
+                    self.factSourceName = sourceName
+                    self.factSourceUrl = sourceUrl
                     
                     //Store Fact on Realm
                     var recentFact = RecentFact()
                     recentFact.contentOfFact = contentOfFact
                     recentFact.forDate = forDate
                     recentFact.detailOfFact = detailOfFact
+                    recentFact.sourceName = sourceName
+                    recentFact.sourceUrl = sourceUrl
+                    
                     let realm = Realm()
                     realm.write() {
                         realm.add(recentFact)
@@ -138,6 +149,8 @@ class FactOfTheDayViewController: UIViewController {
         if segue.identifier == "learnMore" {
             var destViewController = segue.destinationViewController as! LearnMoreViewController
             destViewController.factDetailsText = detailOfFact
+            destViewController.source = factSourceName
+            destViewController.sourceUrl = factSourceUrl
         }
     }
     
