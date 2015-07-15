@@ -7,30 +7,78 @@
 //
 
 import UIKit
+import Parse
 import RealmSwift
 
 class RecentFactsTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var recentFacts: Results<RecentFact>! {
+    /*var recentFacts: Results<RecentFact>! {
         didSet {
             // Whenever notes update, update the table view
             tableView?.reloadData()
         }
-    }
+    }*/
+    
+    var fact: [Fact] = []
+    var detailOfFact: String = "Uh Oh...Could not find more information for this fact :("
+    let dateHelper = DateHelper()
+    var recentFacts: [Fact] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.delegate = self
+        /*
         let realm = Realm() // 1
-        recentFacts = realm.objects(RecentFact)
+        recentFacts = realm.objects(RecentFact)*/
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Display Recent Facts
+        displayRecentFacts(dateHelper.dateTodayAsInt())
+    }
+    
+    func displayRecentFacts(dateTodayAsInt: Int) {
+        //Determine Past 7 days
+        var recentDatesAsInts: [Int] = dateHelper.recentDays()
+        
+        //Check Recent Dates
+        for var i = 0; i<recentDatesAsInts.count; i++ {
+            println("Recent Date: \(recentDatesAsInts[i])")
+        }
+        
+        //Query Parse
+        let query = PFQuery(className: "Fact")
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            self.fact = result as? [Fact] ?? []
+            
+            //Loop through fact array
+            for fact in self.fact {
+                //Retrieve info of each PFObject
+                var forDate = fact.forDate
+                var contentOfFact = fact.contentOfFact
+                var detailOfFact = fact.detailOfFact
+                
+                //Loop through recentDatesAsInts
+                for var i = 0; i<recentDatesAsInts.count; i++ {
+                    if fact.forDate == recentDatesAsInts[i] {
+                        self.recentFacts.append(fact)
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
+
+        }
     }
 
     
@@ -46,10 +94,6 @@ class RecentFactsTableViewController: UIViewController {
 
 }
 
-extension RecentFactsTableViewController: UITableViewDelegate {
-    
-}
-
 extension RecentFactsTableViewController: UITableViewDataSource {
     // MARK: - Table view data source
     
@@ -59,7 +103,9 @@ extension RecentFactsTableViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(recentFacts?.count ?? 0)
+        //return Int(recentFacts?.count ?? 0)
+        return Int(recentFacts.count ?? 0)
+        //return 7
     }
     
     
@@ -68,12 +114,18 @@ extension RecentFactsTableViewController: UITableViewDataSource {
     
         // Configure the cell...
         let row = indexPath.row
-        let recentFact = recentFacts[row] as RecentFact
-        cell.recentFact = recentFact
-    
+        let recentFact = self.recentFacts[row] as Fact
+        cell.contentOfFact.text = recentFact.contentOfFact
+        cell.forDate.text = "\(recentFact.forDate)"
+        
         return cell
     }
-
     
 
+}
+
+extension RecentFactsTableViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //Do Something
+    }
 }

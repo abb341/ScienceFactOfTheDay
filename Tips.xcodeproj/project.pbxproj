@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059A91B56C2D9005030E4 /* DateHelper.swift */; };
 		184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */; };
 		184C6F061B51CD2B0072B76E /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F051B51CD2B0072B76E /* Fact.swift */; };
 		184C6F1D1B547D3F0072B76E /* RecentFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F1C1B547D3F0072B76E /* RecentFact.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184059A91B56C2D9005030E4 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactOfTheDayViewController.swift; sourceTree = "<group>"; };
 		184C6F051B51CD2B0072B76E /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		184C6F1C1B547D3F0072B76E /* RecentFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFact.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184059A81B56C2BD005030E4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				184059A91B56C2D9005030E4 /* DateHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		184C6EF01B50D4440072B76E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,13 +98,6 @@
 				184C6F1C1B547D3F0072B76E /* RecentFact.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		184C6F191B544EDF0072B76E /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		184C6F221B547ED40072B76E /* TableViewCells */ = {
@@ -128,8 +131,8 @@
 		185F302C1B50CCB5008AB77B /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				184059A81B56C2BD005030E4 /* Helpers */,
 				184C6F221B547ED40072B76E /* TableViewCells */,
-				184C6F191B544EDF0072B76E /* Helpers */,
 				184C6F041B51CD1B0072B76E /* Models */,
 				184C6EF01B50D4440072B76E /* View Controllers */,
 				185F302F1B50CCB5008AB77B /* AppDelegate.swift */,
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				184C6F261B55B3A40072B76E /* LearnMoreViewController.swift in Sources */,
+				184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */,
 				184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */,
 				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
 				184C6F1D1B547D3F0072B76E /* RecentFact.swift in Sources */,

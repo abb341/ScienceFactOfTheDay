@@ -338,7 +338,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAB-hJ-vJH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fact" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAB-hJ-vJH">
                                             <rect key="frame" x="0.0" y="8" width="600" height="310"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="310" id="tCp-zn-ndW"/>
@@ -364,7 +364,7 @@
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="DWn-oM-hN4" id="7wk-PW-UwU"/>
-                            <outlet property="delegate" destination="DWn-oM-hN4" id="GAg-OK-0PX"/>
+                            <outlet property="delegate" destination="DWn-oM-hN4" id="fwl-5d-izl"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recent" id="ao8-Fg-Uik" userLabel="Recent"/>

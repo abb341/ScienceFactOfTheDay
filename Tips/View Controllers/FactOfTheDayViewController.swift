@@ -21,6 +21,7 @@ class FactOfTheDayViewController: UIViewController {
     
     var fact: [Fact] = []
     var detailOfFact: String = "Sorry, There is no more information for this fact :("
+    let dateHelper = DateHelper()
     
     // MARK: Lifecycle
     
@@ -47,11 +48,7 @@ class FactOfTheDayViewController: UIViewController {
         
         
         //Date
-        let calendar = NSCalendar.currentCalendar()
-        let month = calendar.component(.CalendarUnitMonth, fromDate: NSDate())
-        let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
-        let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
-        var dateTodayAsInt = month*1000000 + day*10000 + year
+        var dateTodayAsInt = dateHelper.dateTodayAsInt()
         var factOnRealm = checkRealmForFOTD(dateTodayAsInt)
         if factOnRealm {
             //display fact through Realm
@@ -99,7 +96,6 @@ class FactOfTheDayViewController: UIViewController {
             self.fact = result as? [Fact] ?? []
             
             //Loop through fact array
-            //var contentForToday = String()
             for fact in self.fact {
                 //Retrieve info of each PFObject
                 var forDate = fact.forDate
