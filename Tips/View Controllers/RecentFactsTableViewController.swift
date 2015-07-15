@@ -11,13 +11,19 @@ import Parse
 import RealmSwift
 
 class RecentFactsTableViewController: UIViewController {
+    //Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    
+    //Variables
     var fact: [Fact] = []
     var detailOfFact: String = "Uh Oh...Could not find more information for this fact :("
-    let dateHelper = DateHelper()
+    var forDate: Int = 0
+    var contentOfFact: String = "No fact"
+    var sourceName: String = ""
+    var sourceUrl: String = "https://www.google.com"
     var recentFacts: [Fact] = []
+    
+    let dateHelper = DateHelper()
 
 
     override func viewDidLoad() {
@@ -46,11 +52,6 @@ class RecentFactsTableViewController: UIViewController {
         //Determine Past 7 days
         var recentDatesAsInts: [Int] = dateHelper.recentDays()
         
-        //Check Recent Dates
-        for var i = 0; i<recentDatesAsInts.count; i++ {
-            println("Recent Date: \(recentDatesAsInts[i])")
-        }
-        
         //Query Parse
         let query = PFQuery(className: "Fact")
         query.orderByDescending("forDate")
@@ -60,9 +61,9 @@ class RecentFactsTableViewController: UIViewController {
             //Loop through fact array
             for fact in self.fact {
                 //Retrieve info of each PFObject
-                var forDate = fact.forDate
-                var contentOfFact = fact.contentOfFact
-                var detailOfFact = fact.detailOfFact
+                self.forDate = fact.forDate
+                self.contentOfFact = fact.contentOfFact
+                self.detailOfFact = fact.detailOfFact
                 
                 //Loop through recentDatesAsInts
                 for var i = 0; i<recentDatesAsInts.count; i++ {
@@ -78,15 +79,22 @@ class RecentFactsTableViewController: UIViewController {
     }
 
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showOldDetail" {
+            var destViewController = segue.destinationViewController as! MoreInfoViewController
+            destViewController.factDetailLabelText = detailOfFact
+            destViewController.source = sourceName
+            destViewController.sourceUrl = sourceUrl
+            println(sourceName)
+        }
     }
-    */
+    
 
 }
 
@@ -123,5 +131,9 @@ extension RecentFactsTableViewController: UITableViewDataSource {
 extension RecentFactsTableViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Do Something
+        detailOfFact = recentFacts[indexPath.row].detailOfFact
+        sourceName = recentFacts[indexPath.row].sourceName
+        sourceUrl = recentFacts[indexPath.row].sourceUrl
+        performSegueWithIdentifier("showOldDetail", sender: self)
     }
 }
