@@ -22,8 +22,12 @@ class RecentFactsTableViewController: UIViewController {
     var sourceName: String = ""
     var sourceUrl: String = "https://www.google.com"
     var recentFacts: [Fact] = []
+    var recentFactsFromRealm: [RecentFact] = []
+    var fetchFromParse: Bool = true
     
+    //Helpers
     let dateHelper = DateHelper()
+    let realmHelper = RealmHelper()
 
 
     override func viewDidLoad() {
@@ -38,20 +42,32 @@ class RecentFactsTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+       
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        //Display Recent Facts
-        displayRecentFacts(dateHelper.dateTodayAsInt())
+        var recentDatesAsInts = dateHelper.recentDays()
+        
+        var realmHasRecentFacts = realmHelper.doesRealmHaveRecentFacts(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
+        
+        if realmHasRecentFacts {
+            //display fact through Realm
+            println("Accessing Recent Facts From Realm")
+            fetchFromParse = false
+            realmHelper.displayFactFromRealm(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
+            tableView.reloadData()
+        }
+        else {
+            //display fact through Parse
+            println("Accessing Recent Facts From Parse")
+            fetchFromParse = true
+            displayRecentFactsFromParse(recentDatesAsInts)
+            tableView.reloadData()
+        }
+
     }
     
-    func displayRecentFacts(dateTodayAsInt: Int) {
-        //Reset Recent Facts Array
-        recentFacts = []
-        
-        //Determine Past 7 days
-        var recentDatesAsInts: [Int] = dateHelper.recentDays()
-        
+    func displayRecentFactsFromParse(recentDatesAsInts: [Int]) {
         //Query Parse
         let query = PFQuery(className: "Fact")
         query.orderByDescending("forDate")
@@ -66,11 +82,33 @@ class RecentFactsTableViewController: UIViewController {
                 self.detailOfFact = fact.detailOfFact
                 
                 //Loop through recentDatesAsInts
-                for var i = 0; i<recentDatesAsInts.count; i++ {
+                var i = find(self.fact, fact)!
+                for i = 0; i<recentDatesAsInts.count; i++ {
                     if fact.forDate == recentDatesAsInts[i] {
+                        //Add info to Parse array
                         self.recentFacts.append(fact)
+                        
+                        //Store Properties into a realm variable
+                        var newRealmFact = RecentFact()
+                        newRealmFact.forDate = self.forDate
+                        newRealmFact.contentOfFact = self.contentOfFact
+                        newRealmFact.detailOfFact = self.detailOfFact
+                        newRealmFact.sourceName = self.sourceName
+                        newRealmFact.sourceUrl = self.sourceUrl
+                        
+                        //Add information to realm array
+                        self.recentFactsFromRealm.append(newRealmFact)
+                        
+                        //Save recentFactsFromRealm To Realm
+                        self.realmHelper.saveObjectToRealm(self.recentFactsFromRealm[i])
+                        
+                        //Stop the for loop
+                        i+=recentDatesAsInts.count
+
                     }
                 }
+                
+                
             }
             
             self.tableView.reloadData()
@@ -107,8 +145,8 @@ extension RecentFactsTableViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return Int(recentFacts?.count ?? 0)
-        return Int(recentFacts.count ?? 0)
+        
+        return recentFacts.count ?? 0
         //return 7
     }
     
@@ -118,9 +156,17 @@ extension RecentFactsTableViewController: UITableViewDataSource {
     
         // Configure the cell...
         let row = indexPath.row
-        let recentFact = self.recentFacts[row] as Fact
-        cell.contentOfFact.text = recentFact.contentOfFact
-        cell.forDate.text = "\(recentFact.forDate)"
+        if fetchFromParse {
+            let recentFact = self.recentFacts[row] as Fact
+            cell.contentOfFact.text = recentFact.contentOfFact
+            cell.forDate.text = "\(recentFact.forDate)"
+        }
+        else {
+            let recentFactFromRealm = self.recentFactsFromRealm[row] as RecentFact
+            //println(recentFactFromRealm.contentOfFact)
+            cell.contentOfFact.text = recentFactFromRealm.contentOfFact
+            cell.forDate.text = "\(recentFactFromRealm.forDate)"
+        }
         
         return cell
     }
@@ -131,9 +177,21 @@ extension RecentFactsTableViewController: UITableViewDataSource {
 extension RecentFactsTableViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Do Something
-        detailOfFact = recentFacts[indexPath.row].detailOfFact
-        sourceName = recentFacts[indexPath.row].sourceName
-        sourceUrl = recentFacts[indexPath.row].sourceUrl
+        if fetchFromParse {
+            detailOfFact = recentFacts[indexPath.row].detailOfFact
+            sourceName = recentFacts[indexPath.row].sourceName
+            sourceUrl = recentFacts[indexPath.row].sourceUrl
+        }
+        else
+        {
+            detailOfFact = recentFactsFromRealm[indexPath.row].detailOfFact
+            sourceName = recentFactsFromRealm[indexPath.row].sourceName
+            sourceUrl = recentFactsFromRealm[indexPath.row].sourceUrl
+        }
         performSegueWithIdentifier("showOldDetail", sender: self)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        fact = []
+        recentFacts = []
+        recentFactsFromRealm = []
     }
 }

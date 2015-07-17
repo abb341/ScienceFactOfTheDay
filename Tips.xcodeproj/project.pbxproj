@@ -10,6 +10,8 @@
 		184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059A91B56C2D9005030E4 /* DateHelper.swift */; };
 		184059AC1B56DDF8005030E4 /* RecentFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059AB1B56DDF8005030E4 /* RecentFact.swift */; };
 		184059B01B571F3B005030E4 /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059AF1B571F3B005030E4 /* MoreInfoViewController.swift */; };
+		184059B21B5841C4005030E4 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059B11B5841C4005030E4 /* RealmHelper.swift */; };
+		184059B41B586105005030E4 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059B31B586105005030E4 /* ParseHelper.swift */; };
 		184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */; };
 		184C6F061B51CD2B0072B76E /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F051B51CD2B0072B76E /* Fact.swift */; };
 		184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */; };
@@ -37,6 +39,8 @@
 		184059A91B56C2D9005030E4 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		184059AB1B56DDF8005030E4 /* RecentFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFact.swift; sourceTree = "<group>"; };
 		184059AF1B571F3B005030E4 /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
+		184059B11B5841C4005030E4 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		184059B31B586105005030E4 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactOfTheDayViewController.swift; sourceTree = "<group>"; };
 		184C6F051B51CD2B0072B76E /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFactsTableViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				184059A91B56C2D9005030E4 /* DateHelper.swift */,
+				184059B11B5841C4005030E4 /* RealmHelper.swift */,
+				184059B31B586105005030E4 /* ParseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -192,9 +198,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		185F30291B50CCB5008AB77B /* Tips */ = {
+		185F30291B50CCB5008AB77B /* FactOfTheDay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "Tips" */;
+			buildConfigurationList = 185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "FactOfTheDay" */;
 			buildPhases = (
 				32BAB5F8A0ABD8F04C7F6E86 /* Check Pods Manifest.lock */,
 				185F30261B50CCB5008AB77B /* Sources */,
@@ -207,7 +213,7 @@
 			);
 			dependencies = (
 			);
-			name = Tips;
+			name = FactOfTheDay;
 			productName = Tips;
 			productReference = 185F302A1B50CCB5008AB77B /* Tips.app */;
 			productType = "com.apple.product-type.application";
@@ -261,7 +267,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				185F30291B50CCB5008AB77B /* Tips */,
+				185F30291B50CCB5008AB77B /* FactOfTheDay */,
 				185F303E1B50CCB5008AB77B /* TipsTests */,
 			);
 		};
@@ -341,12 +347,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				184C6F261B55B3A40072B76E /* LearnMoreViewController.swift in Sources */,
+				184059B21B5841C4005030E4 /* RealmHelper.swift in Sources */,
 				184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */,
 				184059AC1B56DDF8005030E4 /* RecentFact.swift in Sources */,
 				184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */,
 				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
 				184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */,
 				184059B01B571F3B005030E4 /* MoreInfoViewController.swift in Sources */,
+				184059B41B586105005030E4 /* ParseHelper.swift in Sources */,
 				184C6F241B547EF50072B76E /* RecentFactTableViewCell.swift in Sources */,
 				185F30301B50CCB5008AB77B /* AppDelegate.swift in Sources */,
 			);
@@ -365,7 +373,7 @@
 /* Begin PBXTargetDependency section */
 		185F30411B50CCB5008AB77B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 185F30291B50CCB5008AB77B /* Tips */;
+			target = 185F30291B50CCB5008AB77B /* FactOfTheDay */;
 			targetProxy = 185F30401B50CCB5008AB77B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -546,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "Tips" */ = {
+		185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "FactOfTheDay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				185F304A1B50CCB5008AB77B /* Debug */,
