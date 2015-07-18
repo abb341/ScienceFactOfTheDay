@@ -11,14 +11,29 @@ import Parse
 import RealmSwift
 
 class FactOfTheDayViewController: UIViewController {
+    //Outlets
     @IBOutlet weak var factOfTheDay: UILabel!
+    
+    //Actions
     @IBAction func presentNavigation(sender: AnyObject?){
         performSegueWithIdentifier("presentMenu", sender: self)
     }
     @IBAction func learnMoreButtonPressed(sender: AnyObject){
         performSegueWithIdentifier("learnMore", sender: self)
     }
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        let textToShare = "There's a new fact of the day! \(factOfTheDay.text!)"
+        
+        if let myWebsite = NSURL(string: "https://www.google.com/")
+        {
+            let objectsToShare = [textToShare, myWebsite]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
     
+    //Properties
     var fact: [Fact] = []
     var detailOfFact: String = "Sorry, There is no more information for this fact :("
     var factSourceName: String = "No Source"

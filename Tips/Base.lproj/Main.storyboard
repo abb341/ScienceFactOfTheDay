@@ -35,7 +35,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WY-WC-RDL" userLabel="Learn More">
                                 <rect key="frame" x="0.0" y="64" width="600" height="335"/>
-                                <color key="backgroundColor" red="0.90295533459999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,10 +47,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StU-rA-fEI" userLabel="Fact of the Day">
                                 <rect key="frame" x="0.0" y="64" width="600" height="335"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8U-7M-Xv6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8U-7M-Xv6" userLabel="Color">
                                 <rect key="frame" x="0.0" y="474" width="600" height="82"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -70,20 +69,34 @@
                                 <state key="normal" title="Share">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="1mx-LK-mct" eventType="touchUpInside" id="kIZ-b5-1QV"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPF-eh-AKA">
+                                <rect key="frame" x="0.0" y="400" width="600" height="74"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="B8U-7M-Xv6" firstAttribute="top" secondItem="SPF-eh-AKA" secondAttribute="bottom" id="2Yv-ld-G8R"/>
                             <constraint firstItem="B8U-7M-Xv6" firstAttribute="leading" secondItem="8WY-WC-RDL" secondAttribute="leading" id="5iT-sC-fdB"/>
+                            <constraint firstItem="SPF-eh-AKA" firstAttribute="trailing" secondItem="B8U-7M-Xv6" secondAttribute="trailing" id="CuU-hM-Ezg"/>
                             <constraint firstItem="r0n-rc-WvW" firstAttribute="top" secondItem="StU-rA-fEI" secondAttribute="bottom" constant="157" id="Kbn-Ba-Rlr"/>
                             <constraint firstItem="8WY-WC-RDL" firstAttribute="trailing" secondItem="StU-rA-fEI" secondAttribute="trailing" id="PhS-B5-u8f"/>
                             <constraint firstItem="B8U-7M-Xv6" firstAttribute="trailing" secondItem="8WY-WC-RDL" secondAttribute="trailing" id="QMc-gJ-sYf"/>
                             <constraint firstItem="B8U-7M-Xv6" firstAttribute="bottom" secondItem="r0n-rc-WvW" secondAttribute="top" id="RUh-BF-GqX"/>
                             <constraint firstAttribute="trailing" secondItem="8WY-WC-RDL" secondAttribute="trailing" id="RVa-r9-9eo"/>
+                            <constraint firstItem="SPF-eh-AKA" firstAttribute="leading" secondItem="B8U-7M-Xv6" secondAttribute="leading" id="Vr5-iI-w13"/>
                             <constraint firstItem="StU-rA-fEI" firstAttribute="top" secondItem="vWd-zy-DzF" secondAttribute="bottom" id="ZFr-ZF-EfU"/>
                             <constraint firstItem="8WY-WC-RDL" firstAttribute="top" secondItem="StU-rA-fEI" secondAttribute="top" id="cky-2Z-z2Z"/>
                             <constraint firstItem="r0n-rc-WvW" firstAttribute="top" secondItem="xK9-do-skE" secondAttribute="bottom" constant="16" id="fCJ-Nc-fD0"/>
                             <constraint firstItem="8WY-WC-RDL" firstAttribute="leading" secondItem="w7c-Me-L75" secondAttribute="leading" id="jwO-dg-RMN"/>
+                            <constraint firstItem="SPF-eh-AKA" firstAttribute="top" secondItem="StU-rA-fEI" secondAttribute="bottom" constant="1" id="tAf-CV-hQv"/>
                             <constraint firstItem="8WY-WC-RDL" firstAttribute="leading" secondItem="StU-rA-fEI" secondAttribute="leading" id="tsx-Ox-28W"/>
                             <constraint firstItem="8WY-WC-RDL" firstAttribute="bottom" secondItem="StU-rA-fEI" secondAttribute="bottom" id="xSn-eP-E63"/>
                             <constraint firstItem="xK9-do-skE" firstAttribute="centerX" secondItem="B8U-7M-Xv6" secondAttribute="centerX" id="xi5-dA-qMl"/>
@@ -189,7 +202,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRp-LA-1fT">
                                 <rect key="frame" x="75" y="468" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-NB-1Ef" userLabel="Source Link">
@@ -207,11 +219,10 @@
                                     <constraint firstAttribute="height" constant="348" id="hvQ-mW-3eL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90295533459999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cs2-fw-21m" firstAttribute="top" secondItem="CRp-LA-1fT" secondAttribute="bottom" constant="111" id="A0A-bL-y8U"/>
                             <constraint firstItem="zQb-9e-8x3" firstAttribute="centerX" secondItem="RTD-ex-WKv" secondAttribute="centerX" id="IZS-eN-SBD"/>
