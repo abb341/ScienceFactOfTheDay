@@ -38,7 +38,6 @@ class FactOfTheDayViewController: UIViewController {
     var detailOfFact: String = "Sorry, There is no more information for this fact :("
     var factSourceName: String = "No Source"
     var factSourceUrl: String = "https://www.google.com"
-    let dateHelper = DateHelper()
     
     // MARK: Lifecycle
     
@@ -65,7 +64,7 @@ class FactOfTheDayViewController: UIViewController {
         */
         
         //Date
-        var dateTodayAsInt = dateHelper.dateTodayAsInt()
+        var dateTodayAsInt = DateHelper.dateTodayAsInt()
         var factOnRealm = checkRealmForFOTD(dateTodayAsInt)
         if factOnRealm {
             //display fact through Realm
@@ -76,6 +75,12 @@ class FactOfTheDayViewController: UIViewController {
             //display fact through Parse
             println("Accessing Parse")
             displayFactOfTheDay(dateTodayAsInt)
+            
+            //If nothing is on parse
+            if (factOfTheDay.text == "")
+            {
+                factOfTheDay.text = ErrorHandler.defaultLabelText
+            }
         }
         
     }

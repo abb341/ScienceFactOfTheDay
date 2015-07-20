@@ -10,7 +10,7 @@ import Foundation
 
 class DateHelper {
 
-    func dateTodayAsInt() -> Int {
+    static func dateTodayAsInt() -> Int {
         let calendar = NSCalendar.currentCalendar()
         let month = calendar.component(.CalendarUnitMonth, fromDate: NSDate())
         let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
@@ -19,7 +19,7 @@ class DateHelper {
         return dateTodayAsInt
     }
     
-    func recentDays() -> [Int] {
+    static func recentDays() -> [Int] {
         let calendar = NSCalendar.currentCalendar()
         let month = calendar.component(.CalendarUnitMonth, fromDate: NSDate())
         let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
@@ -33,5 +33,30 @@ class DateHelper {
         }
         
         return recentDatesAsInts
+    }
+    
+    static func formatForDate(var forDate: Int) -> String {
+        //Find Month
+        var month = forDate/1000000
+        println("Month: \(month)")
+        
+        //Find Day
+        var monthAndDay = forDate/10000
+        println("Month and Day: \(monthAndDay)")
+        var day: Int = 0
+        for var i = 0; i<99; i++ {
+            if (monthAndDay - i == month*100) {
+                day = i
+                i+=99
+            }
+        }
+        println("Day: \(day)")
+        
+        //Find Year
+        var year = forDate - month*1000000 - day*10000
+        println("Year: \(year)")
+        
+        let formattedForDate = "\(month)/\(day)/\(year)"
+        return formattedForDate
     }
 }

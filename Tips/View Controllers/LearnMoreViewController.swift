@@ -13,12 +13,6 @@ class LearnMoreViewController: UIViewController {
     @IBOutlet weak var factDetails: UILabel!
     @IBOutlet weak var sourceName: UIButton!
     
-    //Actions
-    @IBAction func sourceNameButtonPressed(sender: AnyObject) {
-        //Load web page on safari
-        UIApplication.sharedApplication().openURL(NSURL(string: sourceUrl)!)
-    }
-    
     //Variables
     var factDetailsText = String()
     var sourceUrl = String()
@@ -39,14 +33,18 @@ class LearnMoreViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showWebView" {
+            var destVC = segue.destinationViewController as! WebViewController
+            destVC.requestURL = sourceUrl
+        }
     }
-    */
+    
 
 }

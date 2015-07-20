@@ -10,14 +10,14 @@ import Foundation
 import RealmSwift
 
 class RealmHelper {
-    func saveObjectToRealm(recentFact: RecentFact) {
+    static func saveObjectToRealm(recentFact: RecentFact) {
         let realm = Realm()
         realm.write() {
             realm.add(recentFact)
         }
     }
     
-    func doesRealmHaveRecentFacts(recentDatesAsInts: [Int], recentFactsFromRealm: [RecentFact]) -> Bool {
+    static func doesRealmHaveRecentFacts(recentDatesAsInts: [Int], recentFactsFromRealm: [RecentFact]) -> Bool {
         var areRecentFactsOnRealm: Bool
         let realm = Realm()
         var realmQueryArray = [Int]()
@@ -35,7 +35,7 @@ class RealmHelper {
         return areRecentFactsOnRealm
     }
     
-    func displayFactFromRealm(recentDatesAsInts: [Int], var recentFactsFromRealm: [RecentFact]) -> Void {
+    static func displayFactFromRealm(recentDatesAsInts: [Int], var recentFactsFromRealm: [RecentFact]) -> Void {
         println("Recent Facts On Realm: \(recentFactsFromRealm.count)")
         let realm = Realm()
         for var i=0; i<7; i++ {

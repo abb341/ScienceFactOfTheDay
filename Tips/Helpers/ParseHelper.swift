@@ -10,5 +10,12 @@ import Foundation
 import Parse
 
 class ParseHelper {
-            
+    
+    static func queryForRecentFacts(completionBlock: PFArrayResultBlock) {
+        //Query Parse
+        let query = PFQuery(className: "Fact")
+        query.orderByDescending("forDate")
+        query.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
 }

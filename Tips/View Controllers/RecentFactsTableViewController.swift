@@ -19,15 +19,11 @@ class RecentFactsTableViewController: UIViewController {
     var detailOfFact: String = "Uh Oh...Could not find more information for this fact :("
     var forDate: Int = 0
     var contentOfFact: String = "No fact"
-    var sourceName: String = ""
+    var sourceName: String = "No Source"
     var sourceUrl: String = "https://www.google.com"
     var recentFacts: [Fact] = []
     var recentFactsFromRealm: [RecentFact] = []
     var fetchFromParse: Bool = true
-    
-    //Helpers
-    let dateHelper = DateHelper()
-    let realmHelper = RealmHelper()
 
 
     override func viewDidLoad() {
@@ -46,15 +42,15 @@ class RecentFactsTableViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var recentDatesAsInts = dateHelper.recentDays()
+        var recentDatesAsInts = DateHelper.recentDays()
         
-        var realmHasRecentFacts = realmHelper.doesRealmHaveRecentFacts(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
+        var realmHasRecentFacts = RealmHelper.doesRealmHaveRecentFacts(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
         
         if realmHasRecentFacts {
             //display fact through Realm
             println("Accessing Recent Facts From Realm")
             fetchFromParse = false
-            realmHelper.displayFactFromRealm(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
+            RealmHelper.displayFactFromRealm(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
             tableView.reloadData()
         }
         else {
@@ -69,21 +65,24 @@ class RecentFactsTableViewController: UIViewController {
     
     func displayRecentFactsFromParse(recentDatesAsInts: [Int]) {
         //Query Parse
-        let query = PFQuery(className: "Fact")
-        query.orderByDescending("forDate")
-        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+        ParseHelper.queryForRecentFacts {(result: [AnyObject]?, error: NSError?) -> Void in
             self.fact = result as? [Fact] ?? []
             
             //Loop through fact array
             for fact in self.fact {
                 //Retrieve info of each PFObject
-                self.forDate = fact.forDate
-                self.contentOfFact = fact.contentOfFact
-                self.detailOfFact = fact.detailOfFact
+                if fact.contentOfFact != "" {
+                    self.forDate = fact.forDate
+                    self.contentOfFact = fact.contentOfFact
+                    self.detailOfFact = fact.detailOfFact
+                }
+                else {
+                    self.contentOfFact = ErrorHandler.defaultLabelText
+                }
                 
                 //Loop through recentDatesAsInts
-                var i = find(self.fact, fact)!
-                for i = 0; i<recentDatesAsInts.count; i++ {
+                //var i = find(self.fact, fact)!
+                for var i = 0; i<recentDatesAsInts.count; i++ {
                     if fact.forDate == recentDatesAsInts[i] {
                         //Add info to Parse array
                         self.recentFacts.append(fact)
@@ -100,7 +99,7 @@ class RecentFactsTableViewController: UIViewController {
                         self.recentFactsFromRealm.append(newRealmFact)
                         
                         //Save recentFactsFromRealm To Realm
-                        self.realmHelper.saveObjectToRealm(self.recentFactsFromRealm[i])
+                        RealmHelper.saveObjectToRealm(self.recentFactsFromRealm.last!)
                         
                         //Stop the for loop
                         i+=recentDatesAsInts.count
@@ -116,7 +115,6 @@ class RecentFactsTableViewController: UIViewController {
         }
     }
 
-    
     
     // MARK: - Navigation
 
@@ -159,13 +157,13 @@ extension RecentFactsTableViewController: UITableViewDataSource {
         if fetchFromParse {
             let recentFact = self.recentFacts[row] as Fact
             cell.contentOfFact.text = recentFact.contentOfFact
-            cell.forDate.text = "\(recentFact.forDate)"
+            cell.forDate.text = DateHelper.formatForDate(recentFact.forDate)
         }
         else {
             let recentFactFromRealm = self.recentFactsFromRealm[row] as RecentFact
             //println(recentFactFromRealm.contentOfFact)
             cell.contentOfFact.text = recentFactFromRealm.contentOfFact
-            cell.forDate.text = "\(recentFactFromRealm.forDate)"
+            cell.forDate.text = DateHelper.formatForDate(recentFactFromRealm.forDate)
         }
         
         return cell
