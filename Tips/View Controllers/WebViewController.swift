@@ -47,21 +47,28 @@ class WebViewController: UIViewController, UIWebViewDelegate  {
         
         println("WebView Disappeared")
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        requestURL = ""
-        self.webView = nil
+        removeWebView()
     }
     
     // MARK: Convenience
     func loadAddressURL() {
         if let requestURL = NSURL(string: self.requestURL) {
+            //LoadingOverlay.shared.showOverlay(self.view)
             let request = NSURLRequest(URL: requestURL)
             webView.loadRequest(request)
+            //LoadingOverlay.shared.hideOverlayView()
         }
     }
     
     func configureWebView() {
         webView.backgroundColor = UIColor.whiteColor()
         webView.scalesPageToFit = true
+    }
+    
+    func removeWebView() {
+        requestURL = ""
+        //loadAddressURL()
+        self.webView = nil
     }
     
     
