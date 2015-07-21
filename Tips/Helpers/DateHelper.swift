@@ -25,10 +25,12 @@ class DateHelper {
         let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
         let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
         
-        var recentDatesAsInts: [Int] = [1,2,3,4,5,6,7]
+        var recentDatesAsInts: [Int] = []
+        
         var indexDay = day
         for var i: Int = 0; i < 7; i++ {
             indexDay--
+            recentDatesAsInts.append(i)
             recentDatesAsInts[i] = month*1000000 + indexDay*10000 + year
         }
         
@@ -38,11 +40,9 @@ class DateHelper {
     static func formatForDate(var forDate: Int) -> String {
         //Find Month
         var month = forDate/1000000
-        println("Month: \(month)")
         
         //Find Day
         var monthAndDay = forDate/10000
-        println("Month and Day: \(monthAndDay)")
         var day: Int = 0
         for var i = 0; i<99; i++ {
             if (monthAndDay - i == month*100) {
@@ -50,11 +50,9 @@ class DateHelper {
                 i+=99
             }
         }
-        println("Day: \(day)")
         
         //Find Year
         var year = forDate - month*1000000 - day*10000
-        println("Year: \(year)")
         
         let formattedForDate = "\(month)/\(day)/\(year)"
         return formattedForDate

@@ -15,6 +15,7 @@
 		184059B61B5D548A005030E4 /* Error Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059B51B5D548A005030E4 /* Error Handler.swift */; };
 		184059B81B5D68F5005030E4 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059B71B5D68F5005030E4 /* AboutViewController.swift */; };
 		184059BA1B5D6B54005030E4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059B91B5D6B54005030E4 /* WebViewController.swift */; };
+		184059BC1B5DAC57005030E4 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059BB1B5DAC57005030E4 /* LoadingOverlay.swift */; };
 		184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */; };
 		184C6F061B51CD2B0072B76E /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F051B51CD2B0072B76E /* Fact.swift */; };
 		184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */; };
@@ -47,12 +48,13 @@
 		184059B51B5D548A005030E4 /* Error Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error Handler.swift"; sourceTree = "<group>"; };
 		184059B71B5D68F5005030E4 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		184059B91B5D6B54005030E4 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		184059BB1B5DAC57005030E4 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		184C6F021B51CAF00072B76E /* FactOfTheDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactOfTheDayViewController.swift; sourceTree = "<group>"; };
 		184C6F051B51CD2B0072B76E /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		184C6F1E1B547E660072B76E /* RecentFactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFactsTableViewController.swift; sourceTree = "<group>"; };
 		184C6F231B547EF50072B76E /* RecentFactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFactTableViewCell.swift; sourceTree = "<group>"; };
 		184C6F251B55B3A40072B76E /* LearnMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnMoreViewController.swift; sourceTree = "<group>"; };
-		185F302A1B50CCB5008AB77B /* Tips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tips.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		185F302A1B50CCB5008AB77B /* FactOfTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FactOfTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185F302E1B50CCB5008AB77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185F302F1B50CCB5008AB77B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		185F30341B50CCB5008AB77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				184059B11B5841C4005030E4 /* RealmHelper.swift */,
 				184059B31B586105005030E4 /* ParseHelper.swift */,
 				184059B51B5D548A005030E4 /* Error Handler.swift */,
+				184059BB1B5DAC57005030E4 /* LoadingOverlay.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -140,7 +143,7 @@
 		185F302B1B50CCB5008AB77B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				185F302A1B50CCB5008AB77B /* Tips.app */,
+				185F302A1B50CCB5008AB77B /* FactOfTheDay.app */,
 				185F303F1B50CCB5008AB77B /* TipsTests.xctest */,
 			);
 			name = Products;
@@ -224,7 +227,7 @@
 			);
 			name = FactOfTheDay;
 			productName = Tips;
-			productReference = 185F302A1B50CCB5008AB77B /* Tips.app */;
+			productReference = 185F302A1B50CCB5008AB77B /* FactOfTheDay.app */;
 			productType = "com.apple.product-type.application";
 		};
 		185F303E1B50CCB5008AB77B /* TipsTests */ = {
@@ -363,6 +366,7 @@
 				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
 				184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */,
 				184059B01B571F3B005030E4 /* MoreInfoViewController.swift in Sources */,
+				184059BC1B5DAC57005030E4 /* LoadingOverlay.swift in Sources */,
 				184059B41B586105005030E4 /* ParseHelper.swift in Sources */,
 				184C6F241B547EF50072B76E /* RecentFactTableViewCell.swift in Sources */,
 				184059B61B5D548A005030E4 /* Error Handler.swift in Sources */,
