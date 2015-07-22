@@ -22,11 +22,11 @@ class FactOfTheDayViewController: UIViewController {
         performSegueWithIdentifier("learnMore", sender: self)
     }
     @IBAction func shareButtonPressed(sender: AnyObject) {
-        let textToShare = "There's a new fact of the day! \(factOfTheDay.text!)"
+        let textToShare = "\"" + factOfTheDay.text! + "\""
         
-        if let myWebsite = NSURL(string: "https://www.google.com/")
+        if let myWebsite = NSURL(string: "https://www.facebook.com/pages/Pocket-Facts/859528520769026")
         {
-            let objectsToShare = [textToShare, myWebsite]
+            let objectsToShare = [textToShare, "\r\n", myWebsite]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
             self.presentViewController(activityVC, animated: true, completion: nil)

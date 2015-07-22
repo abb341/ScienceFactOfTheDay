@@ -210,9 +210,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		185F30291B50CCB5008AB77B /* FactOfTheDay */ = {
+		185F30291B50CCB5008AB77B /* Pocket Facts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "FactOfTheDay" */;
+			buildConfigurationList = 185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "Pocket Facts" */;
 			buildPhases = (
 				32BAB5F8A0ABD8F04C7F6E86 /* Check Pods Manifest.lock */,
 				185F30261B50CCB5008AB77B /* Sources */,
@@ -225,7 +225,7 @@
 			);
 			dependencies = (
 			);
-			name = FactOfTheDay;
+			name = "Pocket Facts";
 			productName = Tips;
 			productReference = 185F302A1B50CCB5008AB77B /* FactOfTheDay.app */;
 			productType = "com.apple.product-type.application";
@@ -279,7 +279,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				185F30291B50CCB5008AB77B /* FactOfTheDay */,
+				185F30291B50CCB5008AB77B /* Pocket Facts */,
 				185F303E1B50CCB5008AB77B /* TipsTests */,
 			);
 		};
@@ -389,7 +389,7 @@
 /* Begin PBXTargetDependency section */
 		185F30411B50CCB5008AB77B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 185F30291B50CCB5008AB77B /* FactOfTheDay */;
+			target = 185F30291B50CCB5008AB77B /* Pocket Facts */;
 			targetProxy = 185F30401B50CCB5008AB77B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "FactOfTheDay" */ = {
+		185F30491B50CCB5008AB77B /* Build configuration list for PBXNativeTarget "Pocket Facts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				185F304A1B50CCB5008AB77B /* Debug */,

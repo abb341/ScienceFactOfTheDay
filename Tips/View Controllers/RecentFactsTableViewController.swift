@@ -16,11 +16,11 @@ class RecentFactsTableViewController: UIViewController {
     
     //Variables
     var fact: [Fact] = []
-    var detailOfFact: String = "Uh Oh...Could not find more information for this fact :("
+    var detailOfFact: String = "There was an error retrieving more info"
     var forDate: Int = 0
-    var contentOfFact: String = "No fact"
-    var sourceName: String = "No Source"
-    var sourceUrl: String = "https://www.google.com"
+    var contentOfFact: String = ""
+    var sourceName: String = ""
+    var sourceUrl: String = ""
     var recentFactsFromParse: [Fact] = []
     var recentFactsFromRealm: [RecentFact] = []
     var fetchFromParse: Bool = true
@@ -39,14 +39,14 @@ class RecentFactsTableViewController: UIViewController {
         //LoadingOverlay.shared.showOverlay(self.view)
         if realmHasRecentFacts {
             //display fact through Realm
-            println("Accessing Recent Facts From Realm")
+            //println("Accessing Recent Facts From Realm")
             fetchFromParse = false
             RealmHelper.displayFactFromRealm(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
             tableView.reloadData()
         }
         else {
             //display fact through Parse
-            println("Accessing Recent Facts From Parse")
+            //println("Accessing Recent Facts From Parse")
             fetchFromParse = true
             displayRecentFactsFromParse(recentDatesAsInts)
             tableView.reloadData()
