@@ -35,9 +35,10 @@ class FactOfTheDayViewController: UIViewController {
     
     //Properties
     var fact: [Fact] = []
-    var detailOfFact: String = "Sorry, There is no more information for this fact :("
+    var detailOfFact: String = ""
     var factSourceName: String = "No Source"
     var factSourceUrl: String = "https://www.google.com"
+
     
     // MARK: Lifecycle
     
@@ -60,8 +61,10 @@ class FactOfTheDayViewController: UIViewController {
         var realm = Realm()
         realm.write() {
             realm.deleteAll()
-        } 
+        }
         */
+        
+        
         
         //Date
         var dateTodayAsInt = DateHelper.dateTodayAsInt()
@@ -82,8 +85,17 @@ class FactOfTheDayViewController: UIViewController {
                 factOfTheDay.text = ErrorHandler.defaultLabelText
             }
         }
+        //removeOldFacts(dateTodayAsInt)
         
     }
+    
+    // MARK: Remove facts more than 7 days old
+    /*
+    func removeOldFacts(dateTodayAsInt: Int) -> Void {
+        let realm = Realm()
+        var recentDaysArray = DateHelper.recentDays()
+    }
+    */
     
     // MARK: Fact Of The Day Realm
     

@@ -24,12 +24,14 @@
                 <constraint firstItem="JWz-3T-hcM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PBK-xL-r18"/>
                 <constraint firstItem="JWz-3T-hcM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="PQx-pa-IKE"/>
                 <constraint firstItem="JWz-3T-hcM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="95" id="exG-VY-YCG"/>
+                <constraint firstItem="JWz-3T-hcM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="140" id="smg-eU-DcX"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="exG-VY-YCG"/>
+                    <exclude reference="smg-eU-DcX"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="548" y="455"/>

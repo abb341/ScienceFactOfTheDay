@@ -9,6 +9,6 @@
 import Foundation
 
 class ErrorHandler {
-    static let defaultLabelText = "Uh Oh, Something is wrong :("
+    static let defaultLabelText = ""
     
 }

@@ -23,7 +23,7 @@ class RecentFactsTableViewController: UIViewController {
     var sourceUrl: String = ""
     var recentFactsFromParse: [Fact] = []
     var recentFactsFromRealm: [RecentFact] = []
-    var fetchFromParse: Bool = true
+    //var fetchFromParse: Bool = true
 
 
     override func viewDidLoad() {
@@ -34,9 +34,10 @@ class RecentFactsTableViewController: UIViewController {
         
         var recentDatesAsInts = DateHelper.recentDays()
         
+        /*
         var realmHasRecentFacts = RealmHelper.doesRealmHaveRecentFacts(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
         
-        //LoadingOverlay.shared.showOverlay(self.view)
+        
         if realmHasRecentFacts {
             //display fact through Realm
             //println("Accessing Recent Facts From Realm")
@@ -51,7 +52,10 @@ class RecentFactsTableViewController: UIViewController {
             displayRecentFactsFromParse(recentDatesAsInts)
             tableView.reloadData()
         }
-        //LoadingOverlay.shared.hideOverlayView()
+        */
+        displayRecentFactsFromParse(recentDatesAsInts)
+        tableView.reloadData()
+        
 
     }
 
@@ -152,6 +156,7 @@ extension RecentFactsTableViewController: UITableViewDataSource {
         // Configure the cell...
         let row = indexPath.row
         
+        /*
         if fetchFromParse {
             let recentFact = self.recentFactsFromParse[row] as Fact
             
@@ -164,6 +169,13 @@ extension RecentFactsTableViewController: UITableViewDataSource {
             cell.contentOfFact.text = recentFactFromRealm.contentOfFact
             cell.forDate.text = DateHelper.formatForDate(recentFactFromRealm.forDate)
         }
+        */
+        
+        let recentFact = self.recentFactsFromParse[row] as Fact
+        
+        cell.contentOfFact.text = recentFact.contentOfFact
+        cell.forDate.text = DateHelper.formatForDate(recentFact.forDate)
+
         
         return cell
     }
@@ -174,6 +186,8 @@ extension RecentFactsTableViewController: UITableViewDataSource {
 extension RecentFactsTableViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Do Something
+        
+        /*
         if fetchFromParse {
             detailOfFact = recentFactsFromParse[indexPath.row].detailOfFact
             sourceName = recentFactsFromParse[indexPath.row].sourceName
@@ -185,6 +199,12 @@ extension RecentFactsTableViewController: UITableViewDelegate {
             sourceName = recentFactsFromRealm[indexPath.row].sourceName
             sourceUrl = recentFactsFromRealm[indexPath.row].sourceUrl
         }
+        */
+        
+        detailOfFact = recentFactsFromParse[indexPath.row].detailOfFact
+        sourceName = recentFactsFromParse[indexPath.row].sourceName
+        sourceUrl = recentFactsFromParse[indexPath.row].sourceUrl
+
         performSegueWithIdentifier("showOldDetail", sender: self)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         /*fact = []
