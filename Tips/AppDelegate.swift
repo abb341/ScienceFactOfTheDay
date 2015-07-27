@@ -37,7 +37,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up the Parse SDK
         Parse.setApplicationId("e7its3WT6JzTnxzmk1pESjJn9Lr0jFuS8qm2lufB", clientKey: "tlsQp79ktT0UXVUJEIMSspfHYFIIoy2MjjWp5rxQ")
         
+        let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
+        
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current Installation and save it to Parse
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            println("Device token has been saved.")
+        }
+        println("Device Token: \(deviceToken)")
+    
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+        println("Error: \(error)")
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
