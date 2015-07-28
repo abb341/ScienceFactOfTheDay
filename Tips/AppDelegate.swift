@@ -43,6 +43,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
+        /*
+        //Subscribe to notification channel
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.addUniqueObject("Notifications", forKey: "channels")
+        currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            println("Subscribed to channel")
+        }
+        */
+
+
+        
         return true
     }
     
@@ -53,14 +64,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             println("Device token has been saved.")
         }
-        println("Device Token: \(deviceToken)")
+        //println("Device Token: \(deviceToken)")
     
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         
         println("Error: \(error)")
+        //Unsubscribe to notification channel
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.removeObject("Notifications", forKey: "channels")
+        currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            println("Unsubscribed to channel")
+        }
         
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println("Received Notification")
     }
 
     func applicationWillResignActive(application: UIApplication) {

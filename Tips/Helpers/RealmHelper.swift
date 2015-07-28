@@ -44,4 +44,25 @@ class RealmHelper {
         }
         
     }
+    
+    static func removeOldObjectsFromRealm(recentDatesAsInts: [Int]) {
+        let realm = Realm()
+        var realmFactsToKeep: [RecentFact] = []
+        for var i = 0; i<recentDatesAsInts.count; i++ {
+            var realmQuery = realm.objects(RecentFact).filter("forDate == %d", recentDatesAsInts[i])
+            if let fact = realmQuery.first {
+                realmFactsToKeep.append(realmQuery.first!)
+            }
+        }
+        realm.write() {
+            //Delete All Realm Objects
+            realm.deleteAll()
+            
+            //Loop through recentFactsToKeep
+            for var i = 0; i<realmFactsToKeep.count; i++ {
+                //Add back Facts to Keep
+                realm.add(realmFactsToKeep[i])
+            }
+        }
+    }
 }

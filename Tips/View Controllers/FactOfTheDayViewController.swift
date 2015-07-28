@@ -46,6 +46,13 @@ class FactOfTheDayViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        /*
+        var localNotification:UILocalNotification = UILocalNotification()
+        localNotification.alertAction = "Testing notifications on ios8"
+        localNotification.alertBody = "Wow it works!!!"
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        */
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,8 +68,8 @@ class FactOfTheDayViewController: UIViewController {
         var realm = Realm()
         realm.write() {
             realm.deleteAll()
-        }
-        */
+        }*/
+        
         
         
         
@@ -75,6 +82,8 @@ class FactOfTheDayViewController: UIViewController {
             displayFactFromRealm(dateTodayAsInt)
         }
         else {
+            //Remove old facts
+            RealmHelper.removeOldObjectsFromRealm(DateHelper.recentDays())
             //display fact through Parse
             println("Accessing Parse")
             displayFactOfTheDay(dateTodayAsInt)
@@ -89,13 +98,6 @@ class FactOfTheDayViewController: UIViewController {
         
     }
     
-    // MARK: Remove facts more than 7 days old
-    /*
-    func removeOldFacts(dateTodayAsInt: Int) -> Void {
-        let realm = Realm()
-        var recentDaysArray = DateHelper.recentDays()
-    }
-    */
     
     // MARK: Fact Of The Day Realm
     
