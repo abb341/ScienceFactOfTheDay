@@ -43,6 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.badge = 0
+        currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            println("Changed Badge Number")
+        }
+
+        
         /*
         //Subscribe to notification channel
         let currentInstallation = PFInstallation.currentInstallation()
