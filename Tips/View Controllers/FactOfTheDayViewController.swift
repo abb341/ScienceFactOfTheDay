@@ -35,7 +35,7 @@ class FactOfTheDayViewController: UIViewController {
     
     //Properties
     var fact: [Fact] = []
-    var detailOfFact: String = ""
+    var detailOfFact: String = " "
     var factSourceName: String = "No Source"
     var factSourceUrl: String = "https://www.google.com"
 
@@ -63,12 +63,12 @@ class FactOfTheDayViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        /*
+        
         //Reset Realm Data
         var realm = Realm()
         realm.write() {
             realm.deleteAll()
-        }*/
+        }
         
         
         

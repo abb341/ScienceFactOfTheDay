@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180C228E1B6A875B00660296 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C228D1B6A875B00660296 /* HomeViewController.swift */; };
 		184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059A91B56C2D9005030E4 /* DateHelper.swift */; };
 		184059AC1B56DDF8005030E4 /* RecentFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059AB1B56DDF8005030E4 /* RecentFact.swift */; };
 		184059B01B571F3B005030E4 /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184059AF1B571F3B005030E4 /* MoreInfoViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180C228D1B6A875B00660296 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		184059A91B56C2D9005030E4 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		184059AB1B56DDF8005030E4 /* RecentFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentFact.swift; sourceTree = "<group>"; };
 		184059AF1B571F3B005030E4 /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				184059AF1B571F3B005030E4 /* MoreInfoViewController.swift */,
 				184059B71B5D68F5005030E4 /* AboutViewController.swift */,
 				184059B91B5D6B54005030E4 /* WebViewController.swift */,
+				180C228D1B6A875B00660296 /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				184059AA1B56C2D9005030E4 /* DateHelper.swift in Sources */,
 				184059AC1B56DDF8005030E4 /* RecentFact.swift in Sources */,
 				184C6F031B51CAF00072B76E /* FactOfTheDayViewController.swift in Sources */,
+				180C228E1B6A875B00660296 /* HomeViewController.swift in Sources */,
 				184C6F061B51CD2B0072B76E /* Fact.swift in Sources */,
 				184C6F1F1B547E660072B76E /* RecentFactsTableViewController.swift in Sources */,
 				184059B01B571F3B005030E4 /* MoreInfoViewController.swift in Sources */,
