@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up the Parse SDK
         Parse.setApplicationId("e7its3WT6JzTnxzmk1pESjJn9Lr0jFuS8qm2lufB", clientKey: "tlsQp79ktT0UXVUJEIMSspfHYFIIoy2MjjWp5rxQ")
         
+        
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
         
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             println("Changed Badge Number")
         }
+
 
         
         /*
@@ -78,13 +80,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         
         println("Error: \(error)")
+        
+        /*
         //Unsubscribe to notification channel
         let currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.removeObject("Notifications", forKey: "channels")
         currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             println("Unsubscribed to channel")
         }
-        
+        */
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
