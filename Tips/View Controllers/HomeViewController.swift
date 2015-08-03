@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate 
         
         mailComposerVC.setToRecipients(["pocketfactsapp@gmail.com"])
         mailComposerVC.setSubject("Fact Submission")
-        //mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        mailComposerVC.setMessageBody("Fact:\r\n\r\n\r\nSource:", isHTML: false)
         
         return mailComposerVC
     }
