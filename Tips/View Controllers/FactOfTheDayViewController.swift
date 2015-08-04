@@ -12,6 +12,7 @@ import RealmSwift
 
 class FactOfTheDayViewController: UIViewController {
     //Outlets
+    @IBOutlet var todayView: UIView!
     @IBOutlet weak var factOfTheDay: UILabel!
     
     //Actions
@@ -40,7 +41,7 @@ class FactOfTheDayViewController: UIViewController {
     var factSourceUrl: String = "https://www.google.com"
     var total: [Total] = []
     var numberOfFacts: Int = 20
-    
+    var actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     var factNumber: Int = 1
 
     
@@ -50,6 +51,8 @@ class FactOfTheDayViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        showActivityIndicator(todayView)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,24 +62,26 @@ class FactOfTheDayViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        hideActivityIndicator()
+        
         var query = PFQuery(className: "Total")
         total = query.findObjects() as? [Total] ?? []
         numberOfFacts = total[0].numberOfFacts
+        
         
         factNumber = DateHelper.getTodaysFactNumber(numberOfFacts)
         
             //display fact through Parse
             println("Accessing Parse")
             displayFactOfTheDay(factNumber)
+        
             
             //If nothing is on parse
             if (factOfTheDay.text == "")
             {
                 factOfTheDay.text = ErrorHandler.defaultLabelText
             }
-        
-    }
+        }
     
     // MARK: Fact Of The Day Parse
     func displayFactOfTheDay(factNumber: Int) -> Void {
@@ -100,6 +105,23 @@ class FactOfTheDayViewController: UIViewController {
             
         }
         
+    }
+    
+    //MARK: Activity Indicator
+    
+    func showActivityIndicator(uiView: UIView) {
+        actInd.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+        actInd.center = uiView.center
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.WhiteLarge
+        uiView.addSubview(actInd)
+        actInd.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        actInd.stopAnimating()
+        actInd.removeFromSuperview()
     }
     
     

@@ -97,6 +97,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="factOfTheDay" destination="StU-rA-fEI" id="DRu-bg-QOI"/>
+                        <outlet property="todayView" destination="w7c-Me-L75" id="8vn-8A-nIX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIw-5M-Tyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
