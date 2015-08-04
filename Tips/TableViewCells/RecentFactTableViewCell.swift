@@ -10,7 +10,6 @@ import UIKit
 
 class RecentFactTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var forDate: UILabel!
     @IBOutlet weak var contentOfFact: UILabel!
         
     override func awakeFromNib() {

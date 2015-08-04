@@ -38,6 +38,10 @@ class FactOfTheDayViewController: UIViewController {
     var detailOfFact: String = " "
     var factSourceName: String = "No Source"
     var factSourceUrl: String = "https://www.google.com"
+    var total: [Total] = []
+    var numberOfFacts: Int = 20
+    
+    var factNumber: Int = 1
 
     
     // MARK: Lifecycle
@@ -46,13 +50,6 @@ class FactOfTheDayViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        /*
-        var localNotification:UILocalNotification = UILocalNotification()
-        localNotification.alertAction = "Testing notifications on ios8"
-        localNotification.alertBody = "Wow it works!!!"
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        */
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,113 +59,43 @@ class FactOfTheDayViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        var query = PFQuery(className: "Total")
+        total = query.findObjects() as? [Total] ?? []
+        numberOfFacts = total[0].numberOfFacts
         
+        factNumber = DateHelper.getTodaysFactNumber(numberOfFacts)
         
-        //Reset Realm Data
-        var realm = Realm()
-        realm.write() {
-            realm.deleteAll()
-        }
-        
-        
-        
-        
-        //Date
-        var dateTodayAsInt = DateHelper.dateTodayAsInt()
-        var factOnRealm = checkRealmForFOTD(dateTodayAsInt)
-        if factOnRealm {
-            //display fact through Realm
-            println("Accessing Realm")
-            displayFactFromRealm(dateTodayAsInt)
-        }
-        else {
-            //Remove old facts
-            RealmHelper.removeOldObjectsFromRealm(DateHelper.recentDays())
             //display fact through Parse
             println("Accessing Parse")
-            displayFactOfTheDay(dateTodayAsInt)
+            displayFactOfTheDay(factNumber)
             
             //If nothing is on parse
             if (factOfTheDay.text == "")
             {
                 factOfTheDay.text = ErrorHandler.defaultLabelText
             }
-        }
-        //removeOldFacts(dateTodayAsInt)
         
-    }
-    
-    
-    // MARK: Fact Of The Day Realm
-    
-    func displayFactFromRealm(dateTodayAsInt: Int) -> Void {
-        let realm = Realm()
-        var realmQuery = realm.objects(RecentFact).filter("forDate == %d", dateTodayAsInt)
-        var recentFact = realmQuery.first
-        self.factOfTheDay.text = recentFact?.contentOfFact
-        self.detailOfFact = recentFact!.detailOfFact
-        self.factSourceName = recentFact!.sourceName
-        self.factSourceUrl = recentFact!.sourceUrl
-    }
-    
-    func checkRealmForFOTD(dateTodayAsInt: Int) -> Bool {
-        var isFOTDOnRealm: Bool
-        let realm = Realm()
-        var realmQuery = realm.objects(RecentFact).filter("forDate == %d", dateTodayAsInt)
-        if realmQuery.count == 0 {
-            isFOTDOnRealm = false
-        }
-        else {
-            isFOTDOnRealm = true
-        }
-        
-        return isFOTDOnRealm
     }
     
     // MARK: Fact Of The Day Parse
-    func displayFactOfTheDay(dateTodayAsInt: Int) -> Void {
+    func displayFactOfTheDay(factNumber: Int) -> Void {
         
         //Query Parse
         let query = PFQuery(className: "Fact")
+        query.whereKey("factNumber", equalTo: factNumber)
         query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
             self.fact = result as? [Fact] ?? []
             
             //Loop through fact array
             for fact in self.fact {
                 //Retrieve info of each PFObject
-                var forDate = fact.forDate
-                var contentOfFact = fact.contentOfFact
-                var detailOfFact = fact.detailOfFact
-                var sourceName = fact.sourceName
-                var sourceUrl = fact.sourceUrl
-                
-                //Compare forDate to dateTodayAsInt
-                if (dateTodayAsInt != forDate) {
-                    var index = find(self.fact, fact)
-                    self.fact.removeAtIndex(index!)
-                    //fact.removeAtIndex(index: indexOf(fact, self.fact))
-                }
-                else {
-                    self.factOfTheDay.text = contentOfFact
-                    self.detailOfFact = detailOfFact
-                    self.factSourceName = sourceName
-                    self.factSourceUrl = sourceUrl
-                    
-                    //Store Fact on Realm
-                    var recentFact = RecentFact()
-                    recentFact.contentOfFact = contentOfFact
-                    recentFact.forDate = forDate
-                    recentFact.detailOfFact = detailOfFact
-                    recentFact.sourceName = sourceName
-                    recentFact.sourceUrl = sourceUrl
-                    
-                    let realm = Realm()
-                    realm.write() {
-                        realm.add(recentFact)
-                    }
-                }
+                self.factOfTheDay.text = fact.contentOfFact
+                self.detailOfFact = fact.detailOfFact
+                self.factSourceName = fact.sourceName
+                self.factSourceUrl = fact.sourceUrl
+                self.factNumber = fact.factNumber
             }
-            
             
             
         }

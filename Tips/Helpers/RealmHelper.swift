@@ -10,21 +10,23 @@ import Foundation
 import RealmSwift
 
 class RealmHelper {
+    /*
     static func saveObjectToRealm(recentFact: RecentFact) {
         let realm = Realm()
         realm.write() {
             realm.add(recentFact)
         }
-    }
+    }*/
     
+    /*
     static func doesRealmHaveRecentFacts(recentDatesAsInts: [Int], recentFactsFromRealm: [RecentFact]) -> Bool {
         var areRecentFactsOnRealm: Bool
         let realm = Realm()
         var realmQueryArray = [Int]()
         if recentFactsFromRealm != [] {
             for var i:Int = 0; i<7; i++ {
-                var realmQuery = realm.objects(RecentFact).filter("forDate == %d", recentFactsFromRealm[i].forDate)
-                realmQueryArray.append(recentFactsFromRealm[i].forDate)
+                var realmQuery = realm.objects(RecentFact).filter("factNumber == %d", recentFactsFromRealm[i].factNumber)
+                realmQueryArray.append(recentFactsFromRealm[i].factNumber)
             }
             areRecentFactsOnRealm = true
         }
@@ -33,8 +35,9 @@ class RealmHelper {
         }
         
         return areRecentFactsOnRealm
-    }
+    }*/
     
+    /*
     static func displayFactFromRealm(recentDatesAsInts: [Int], var recentFactsFromRealm: [RecentFact]) -> Void {
         println("Recent Facts On Realm: \(recentFactsFromRealm.count)")
         let realm = Realm()
@@ -44,12 +47,15 @@ class RealmHelper {
         }
         
     }
+*/
     
-    static func removeOldObjectsFromRealm(recentDatesAsInts: [Int]) {
+    
+    /*
+    static func removeOldObjectsFromRealm(recentFactNumbers: [Int]) {
         let realm = Realm()
         var realmFactsToKeep: [RecentFact] = []
-        for var i = 0; i<recentDatesAsInts.count; i++ {
-            var realmQuery = realm.objects(RecentFact).filter("forDate == %d", recentDatesAsInts[i])
+        for var i = 0; i<recentFactNumbers.count; i++ {
+            var realmQuery = realm.objects(RecentFact).filter("factNumber == %d", recentFactNumbers[i])
             if let fact = realmQuery.first {
                 realmFactsToKeep.append(realmQuery.first!)
             }
@@ -65,4 +71,5 @@ class RealmHelper {
             }
         }
     }
+*/
 }

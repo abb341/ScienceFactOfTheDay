@@ -9,52 +9,47 @@
 import Foundation
 
 class DateHelper {
-
-    static func dateTodayAsInt() -> Int {
+    
+    // initialize the date formatter only once, using a static computed property
+    static var dateFormatter: NSDateFormatter = {
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+        }()
+    
+    static func getTodaysFactNumber(var numberOfFacts: Int) -> Int {
+        let LAUNCH_DATE = DateHelper.dateFormatter.dateFromString("2015-08-01")
         let calendar = NSCalendar.currentCalendar()
-        let month = calendar.component(.CalendarUnitMonth, fromDate: NSDate())
-        let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
-        let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
-        var dateTodayAsInt = month*1000000 + day*10000 + year
-        return dateTodayAsInt
+        let days = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: LAUNCH_DATE!, toDate: NSDate(), options: nil).day
+        var factNumber = days + 1
+        if factNumber > numberOfFacts {
+            println("Number is greater than number of facts: \(factNumber)")
+            factNumber = (factNumber % numberOfFacts) + 1
+        }
+        println("factNumber: \(factNumber)")
+        println("numberOfFacts: \(numberOfFacts)")
+        println(factNumber%numberOfFacts)
+        return factNumber
     }
     
-    static func recentDays() -> [Int] {
-        let calendar = NSCalendar.currentCalendar()
-        let month = calendar.component(.CalendarUnitMonth, fromDate: NSDate())
-        let day = calendar.component(.CalendarUnitDay, fromDate: NSDate())
-        let year = calendar.component(.CalendarUnitYear, fromDate: NSDate())
+    static func recentFactNumbers(var numberOfFacts: Int) -> [Int] {
+        let TODAYS_FACT_NUMBER = DateHelper.getTodaysFactNumber(numberOfFacts)
         
-        var recentDatesAsInts: [Int] = []
+        var recentFactNumbers: [Int] = []
         
-        var indexDay = day
+        var indexFactNumber = TODAYS_FACT_NUMBER
         for var i: Int = 0; i < 7; i++ {
-            indexDay--
-            recentDatesAsInts.append(i)
-            recentDatesAsInts[i] = month*1000000 + indexDay*10000 + year
+            if indexFactNumber > 1 {
+                indexFactNumber--
+            }
+            else {
+                indexFactNumber = numberOfFacts
+            }
+            recentFactNumbers.append(indexFactNumber)
+            println("Array: \(recentFactNumbers[i])")
         }
         
-        return recentDatesAsInts
+        return recentFactNumbers
     }
     
-    static func formatForDate(var forDate: Int) -> String {
-        //Find Month
-        var month = forDate/1000000
-        
-        //Find Day
-        var monthAndDay = forDate/10000
-        var day: Int = 0
-        for var i = 0; i<99; i++ {
-            if (monthAndDay - i == month*100) {
-                day = i
-                i+=99
-            }
-        }
-        
-        //Find Year
-        var year = forDate - month*1000000 - day*10000
-        
-        let formattedForDate = "\(month)/\(day)/\(year)"
-        return formattedForDate
-    }
 }

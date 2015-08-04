@@ -17,13 +17,15 @@ class RecentFactsTableViewController: UIViewController {
     //Variables
     var fact: [Fact] = []
     var detailOfFact: String = "There was an error retrieving more info"
-    var forDate: Int = 0
+    //var forDate: Int = 0
     var contentOfFact: String = ""
     var sourceName: String = ""
     var sourceUrl: String = ""
-    var recentFactsFromParse: [Fact] = []
-    var recentFactsFromRealm: [RecentFact] = []
+    var recentFactsFromParse = [Fact?](count:7, repeatedValue: nil)
+    //var recentFactsFromRealm: [RecentFact] = []
     //var fetchFromParse: Bool = true
+    var numberOfFacts: Int = 20
+    var total: [Total] = []
 
 
     override func viewDidLoad() {
@@ -32,28 +34,13 @@ class RecentFactsTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        var recentDatesAsInts = DateHelper.recentDays()
+        var query = PFQuery(className: "Total")
+        total = query.findObjects() as? [Total] ?? []
+        numberOfFacts = total[0].numberOfFacts
         
-        /*
-        var realmHasRecentFacts = RealmHelper.doesRealmHaveRecentFacts(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
+        var recentFactNumbers = DateHelper.recentFactNumbers(numberOfFacts)
         
-        
-        if realmHasRecentFacts {
-            //display fact through Realm
-            //println("Accessing Recent Facts From Realm")
-            fetchFromParse = false
-            RealmHelper.displayFactFromRealm(recentDatesAsInts, recentFactsFromRealm: recentFactsFromRealm)
-            tableView.reloadData()
-        }
-        else {
-            //display fact through Parse
-            //println("Accessing Recent Facts From Parse")
-            fetchFromParse = true
-            displayRecentFactsFromParse(recentDatesAsInts)
-            tableView.reloadData()
-        }
-        */
-        displayRecentFactsFromParse(recentDatesAsInts)
+        displayRecentFactsFromParse(recentFactNumbers)
         tableView.reloadData()
         
 
@@ -65,43 +52,31 @@ class RecentFactsTableViewController: UIViewController {
     }
     
     
-    func displayRecentFactsFromParse(recentDatesAsInts: [Int]) {
+    func displayRecentFactsFromParse(recentFactNumbers: [Int]) {
         //Query Parse
-        ParseHelper.queryForRecentFacts {(result: [AnyObject]?, error: NSError?) -> Void in
+        let query = PFQuery(className: "Fact")
+        query.whereKey("factNumber", containedIn: recentFactNumbers)
+        query.orderByDescending("factNumber")
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
             self.fact = result as? [Fact] ?? []
             
             //Loop through fact array
             for fact in self.fact {
                 //Retrieve info of each PFObject
                 
-                self.forDate = fact.forDate
                 self.contentOfFact = fact.contentOfFact
                 self.detailOfFact = fact.detailOfFact
                 
                 
                 //Loop through recentDatesAsInts
                 //var i = find(self.fact, fact)!
-                for var i = 0; i<recentDatesAsInts.count; i++ {
-                    if fact.forDate == recentDatesAsInts[i] {
+                for var i = 0; i<recentFactNumbers.count; i++ {
+                    if fact.factNumber == recentFactNumbers[i] {
                         //Add info to Parse array
-                        self.recentFactsFromParse.append(fact)
-                        
-                        //Store Properties into a realm variable
-                        var newRealmFact = RecentFact()
-                        newRealmFact.forDate = self.forDate
-                        newRealmFact.contentOfFact = self.contentOfFact
-                        newRealmFact.detailOfFact = self.detailOfFact
-                        newRealmFact.sourceName = self.sourceName
-                        newRealmFact.sourceUrl = self.sourceUrl
-                        
-                        //Add information to realm array
-                        self.recentFactsFromRealm.append(newRealmFact)
-                        
-                        //Save recentFactsFromRealm To Realm
-                        RealmHelper.saveObjectToRealm(self.recentFactsFromRealm.last!)
+                        self.recentFactsFromParse[i] = fact
                         
                         //Stop the for loop
-                        i+=recentDatesAsInts.count
+                        i+=recentFactNumbers.count
 
                     }
                 }
@@ -171,10 +146,11 @@ extension RecentFactsTableViewController: UITableViewDataSource {
         }
         */
         
-        let recentFact = self.recentFactsFromParse[row] as Fact
+        let recentFact = self.recentFactsFromParse[row] as Fact?
         
-        cell.contentOfFact.text = recentFact.contentOfFact
-        cell.forDate.text = DateHelper.formatForDate(recentFact.forDate)
+        if let recentFact = recentFact {
+            cell.contentOfFact.text = recentFact.contentOfFact
+        }
 
         
         return cell
@@ -201,14 +177,11 @@ extension RecentFactsTableViewController: UITableViewDelegate {
         }
         */
         
-        detailOfFact = recentFactsFromParse[indexPath.row].detailOfFact
-        sourceName = recentFactsFromParse[indexPath.row].sourceName
-        sourceUrl = recentFactsFromParse[indexPath.row].sourceUrl
+        detailOfFact = recentFactsFromParse[indexPath.row]!.detailOfFact
+        sourceName = recentFactsFromParse[indexPath.row]!.sourceName
+        sourceUrl = recentFactsFromParse[indexPath.row]!.sourceUrl
 
         performSegueWithIdentifier("showOldDetail", sender: self)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        /*fact = []
-        recentFactsFromParse = []
-        recentFactsFromRealm = []*/
     }
 }

@@ -1,29 +1,22 @@
 //
-//  Fact.swift
+//  Total.swift
 //  Tips
 //
-//  Created by Aaron Brown on 7/11/15.
+//  Created by Aaron Brown on 8/3/15.
 //  Copyright (c) 2015 BrownDogLabs. All rights reserved.
 //
 
 import Foundation
 import Parse
 
-class Fact : PFObject, PFSubclassing {
-    @NSManaged var contentOfFact: String
-    @NSManaged var detailOfFact: String
-    @NSManaged var sourceName: String
-    @NSManaged var sourceUrl: String
-    @NSManaged var factNumber: Int
-    
-    //var factLabel: UILabel!
-    
+class Total: PFObject, PFSubclassing {
+    @NSManaged var numberOfFacts: Int
     
     //MARK: PFSubclassing Protocol
     
     // 3
     static func parseClassName() -> String {
-        return "Fact"
+        return "Total"
     }
     
     // 4
@@ -38,5 +31,4 @@ class Fact : PFObject, PFSubclassing {
             self.registerSubclass()
         }
     }
-    
 }

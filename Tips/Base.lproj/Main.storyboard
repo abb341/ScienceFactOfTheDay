@@ -462,20 +462,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ic-jc-TWB" id="8m2-Ii-AXa">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9c-Ym-Oub">
-                                            <rect key="frame" x="429" y="369" width="163" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="163" id="Nzw-ik-evR"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAB-hJ-vJH">
-                                            <rect key="frame" x="5" y="8" width="590" height="359"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="359" id="tCp-zn-ndW"/>
-                                            </constraints>
+                                            <rect key="frame" x="5" y="15" width="590" height="359"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -483,16 +471,14 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="FAB-hJ-vJH" secondAttribute="trailing" constant="5" id="E3Y-NZ-al2"/>
-                                        <constraint firstItem="e9c-Ym-Oub" firstAttribute="top" secondItem="FAB-hJ-vJH" secondAttribute="bottom" constant="2" id="MWT-8F-4xX"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="e9c-Ym-Oub" secondAttribute="trailing" id="PdK-cm-Epy"/>
-                                        <constraint firstItem="FAB-hJ-vJH" firstAttribute="leading" secondItem="8m2-Ii-AXa" secondAttribute="leading" constant="5" id="Q42-MD-F6C"/>
-                                        <constraint firstItem="e9c-Ym-Oub" firstAttribute="bottom" secondItem="8m2-Ii-AXa" secondAttribute="bottomMargin" constant="9" id="RJ1-Ti-flo"/>
+                                        <constraint firstItem="FAB-hJ-vJH" firstAttribute="leading" secondItem="8m2-Ii-AXa" secondAttribute="leadingMargin" constant="-3" id="I2u-mM-dMv"/>
+                                        <constraint firstItem="FAB-hJ-vJH" firstAttribute="centerY" secondItem="8m2-Ii-AXa" secondAttribute="centerY" id="ZJX-l5-Eua"/>
+                                        <constraint firstItem="FAB-hJ-vJH" firstAttribute="top" secondItem="8m2-Ii-AXa" secondAttribute="topMargin" constant="7" id="bIp-be-Kah"/>
+                                        <constraint firstItem="FAB-hJ-vJH" firstAttribute="centerX" secondItem="8m2-Ii-AXa" secondAttribute="centerX" id="drd-D3-TI2"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentOfFact" destination="FAB-hJ-vJH" id="EWW-AX-iAj"/>
-                                    <outlet property="forDate" destination="e9c-Ym-Oub" id="shr-mf-Wz0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
